@@ -1,21 +1,21 @@
+const checked = new Map(); // We'll keep track of the combinations that have been checked.
 
+const shuffle = (array) => {
+  let currentIndex = array.length,  randomIndex;
 
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
 
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
 
-const checked = new Map();
-
-const findPossibleMagicSquares = () => {
-  const magicSquareCombinations = [];
-
-  while(magicSquareCombinations.length < 8){
-    const combination = generateMagicSquare();
-
-    if(combination){
-      magicSquareCombinations.push(combination);
-    }
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
   }
 
-  return magicSquareCombinations;
+  return array;
 }
 
 const generateMagicSquare = () => {
@@ -55,22 +55,18 @@ const generateMagicSquare = () => {
   return shuffledAsString.split('');
 }
 
-const shuffle = (array) => {
-  let currentIndex = array.length,  randomIndex;
+const findPossibleMagicSquares = () => {
+  const magicSquareCombinations = [];
 
-  // While there remain elements to shuffle...
-  while (currentIndex != 0) {
+  while(magicSquareCombinations.length < 8){
+    const combination = generateMagicSquare();
 
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex], array[currentIndex]];
+    if(combination){
+      magicSquareCombinations.push(combination);
+    }
   }
 
-  return array;
+  return magicSquareCombinations;
 }
 
 const flattenMatrix = (matrixArr) => {
